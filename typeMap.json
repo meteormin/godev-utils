@@ -1,0 +1,87 @@
+{
+    "bigint": {
+        "sqlType": "BIGINT",
+        "javaType": "Long",
+        "javaPackage": ""
+    },
+    "varchar": {
+        "sqlType": "VARCHAR",
+        "javaType": "String",
+        "javaPackage": ""
+    },
+    "tinyint": {
+        "sqlType": "TINYINT",
+        "javaType": "Boolean",
+        "javaPackage": ""
+    },
+    "int": {
+        "sqlType": "INT",
+        "javaType": "Integer",
+        "javaPackage": ""
+    },
+    "datetime": {
+        "sqlType": "DATETIME",
+        "javaType": "LocalDateTime",
+        "javaPackage": "java.time.LocalDateTime"
+    },
+    "date": {
+        "sqlType": "DATE",
+        "javaType": "LocalDate",
+        "javaPackage": "java.time.LocalDate"
+    },
+    "time": {
+        "sqlType": "TIME",
+        "javaType": "LocalTime",
+        "javaPackage": "java.time.LocalTime"
+    },
+    "enum": {
+        "sqlType": "ENUM",
+        "javaType": "String",
+        "javaPackage": ""
+    },
+    "double": {
+        "sqlType": "DOUBLE",
+        "javaType": "Double",
+        "javaPackage": ""
+    },
+    "float": {
+        "sqlType": "FLOAT",
+        "javaType": "Float",
+        "javaPackage": ""
+    },
+    "timestamp": {
+        "sqlType": "TIMESTAMP",
+        "javaType": "LocalDateTime",
+        "javaPackage": "java.time.LocalDateTime"
+    },
+    "Bool": {
+        "sqlType": "BOOL",
+        "javaType": "Boolean",
+        "javaPackage": ""
+    },
+    "text": {
+        "sqlType": "TEXT",
+        "javaType": "String",
+        "javaPackage": ""
+    },
+    "json": {
+        "sqlType": "JSON",
+        "javaType": "Map<String, Object>",
+        "javaPackage": "java.util.Map"
+    },
+    "bit": {
+        "sqlType": "BIT",
+        "javaType": "Boolean",
+        "javaPackage": ""
+    },
+    "Boolean": {
+        "sqlType": "BOOLEAN",
+        "javaType": "Boolean",
+        "javaPackage": ""
+    },
+    "Binary": {
+        "sqlType": "BINARY",
+        "javaType": "UUID",
+        "javaPackage": "java.util.UUID"
+    }
+}
