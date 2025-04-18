@@ -12,18 +12,30 @@ import (
 )
 
 type EntityGeneratorTemplate struct {
-	Package   string
-	TableName string
-	ClassName string
-	Imports   []string
-	Fields    []Field
+	Package     string
+	TableName   string
+	ClassName   string
+	Annotations []string
+	Imports     []string
+	Fields      []Field
 }
 
 type Field struct {
-	Type string
-	Name string
+	Annotations []string
+	Type        string
+	Name        string
 }
 
+type Annotation struct {
+	Name    string
+	Package string
+	Values  []string
+}
+
+type AnnotationMap struct {
+	Sql        string
+	Annotation Annotation
+}
 type TypeMap struct {
 	SqlType     string `json:"sqlType"`
 	JavaType    string `json:"javaType"`
@@ -35,9 +47,10 @@ func (t EntityGeneratorTemplate) TemplateFilename() string {
 }
 
 type Config struct {
-	Pkg       string
-	TypeMap   map[string]TypeMap
-	ClassName ClassName
+	Pkg         string          `json:"-"`
+	TypeMap     []TypeMap       `json:"typeMap"`
+	Annotations []AnnotationMap `json:"annotations"`
+	ClassName   ClassName       `json:"-"`
 }
 
 type ClassName struct {
@@ -122,9 +135,9 @@ func (eg *EntityGenerator) Parse() (map[string]string, error) {
 
 func (eg *EntityGenerator) mappingType(typeStr string) (TypeMap, error) {
 	typeStr = strings.Split(typeStr, "(")[0]
-	for k, v := range eg.cfg.TypeMap {
+	for _, v := range eg.cfg.TypeMap {
 		caser := cases.Lower(language.English)
-		lowerCaseKey := caser.String(k)
+		lowerCaseKey := caser.String(v.SqlType)
 		lowerTypeStr := caser.String(typeStr)
 		if strings.Contains(lowerCaseKey, lowerTypeStr) {
 			return v, nil
@@ -132,6 +145,16 @@ func (eg *EntityGenerator) mappingType(typeStr string) (TypeMap, error) {
 	}
 
 	return TypeMap{}, fmt.Errorf("type %s not found", typeStr)
+}
+
+func (eg *EntityGenerator) mappingAnnotation(typeStr string) (Annotation, error) {
+	for _, v := range eg.cfg.Annotations {
+		if v.Sql == typeStr {
+			return v.Annotation, nil
+		}
+	}
+
+	return Annotation{}, fmt.Errorf("annotation %s not found", typeStr)
 }
 
 func (eg *EntityGenerator) snakeToCamel(s string) string {

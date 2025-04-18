@@ -1,16 +1,14 @@
 /*
 Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
-	"os"
-
+	"github.com/meteormin/godev-utils/cmd/sql/ddl"
+	"github.com/meteormin/godev-utils/cmd/sql/java"
 	"github.com/spf13/cobra"
+	"os"
 )
-
-
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -46,6 +44,8 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	// Add subcommands
+	rootCmd.AddCommand(java.SqlToEntityCmd)
+	rootCmd.AddCommand(ddl.AddCommentCmd)
 }
-
-

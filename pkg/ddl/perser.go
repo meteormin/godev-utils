@@ -53,3 +53,29 @@ func ExtractColumns(table string) (map[string][][]string, error) {
 
 	return map[string][][]string{tableName: fields}, nil
 }
+
+func ExtractColumnComments(block string) (string, map[string]string) {
+	lines := strings.Split(block, "\n")
+	var tableName string
+	columnComments := make(map[string]string)
+
+	columnRegex := regexp.MustCompile("(?i)`?(\\w+)`?\\s+[^,]*?COMMENT\\s+'([^']*)'")
+
+	for _, line := range lines {
+		line = strings.TrimSpace(line)
+		if strings.HasPrefix(strings.ToUpper(line), "CREATE TABLE") {
+			parts := strings.Fields(line)
+			if len(parts) >= 3 {
+				tableName = strings.Trim(parts[2], "`")
+			}
+			continue
+		}
+		if matches := columnRegex.FindStringSubmatch(line); len(matches) == 3 {
+			colDef := strings.Split(line, "COMMENT")[0]
+			comment := matches[2]
+			columnComments[colDef] = comment
+		}
+	}
+
+	return tableName, columnComments
+}

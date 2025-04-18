@@ -17,14 +17,17 @@ import lombok.Setter;
 {{ range .Imports }}
 import {{ . }};
 {{ end }}
+
+{{ range .Annotations }}
+{{ . }}
+{{ end }}
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "{{ .TableName }}")
 public class {{ .ClassName }} {
     {{ range .Fields }}
+    {{ range .Annotations }}
+    {{ . }}
+    {{ end }}
     private {{ .Type }} {{ .Name }};
     {{ end }}
 } 

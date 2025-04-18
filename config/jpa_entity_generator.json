@@ -1,0 +1,123 @@
+{
+    "typeMap": [
+        {
+            "sqlType": "BIGINT",
+            "javaType": "Long",
+            "javaPackage": ""
+        },
+        {
+            "sqlType": "VARCHAR",
+            "javaType": "String",
+            "javaPackage": ""
+        },
+        {
+            "sqlType": "TINYINT",
+            "javaType": "Boolean",
+            "javaPackage": ""
+        },
+        {
+            "sqlType": "INT",
+            "javaType": "Integer",
+            "javaPackage": ""
+        },
+        {
+            "sqlType": "DATETIME",
+            "javaType": "LocalDateTime",
+            "javaPackage": "java.time.LocalDateTime"
+        },
+        {
+            "sqlType": "DATE",
+            "javaType": "LocalDate",
+            "javaPackage": "java.time.LocalDate"
+        },
+        {
+            "sqlType": "TIME",
+            "javaType": "LocalTime",
+            "javaPackage": "java.time.LocalTime"
+        },
+        {
+            "sqlType": "ENUM",
+            "javaType": "String",
+            "javaPackage": ""
+        },
+        {
+            "sqlType": "DOUBLE",
+            "javaType": "Double",
+            "javaPackage": ""
+        },
+        {
+            "sqlType": "FLOAT",
+            "javaType": "Float",
+            "javaPackage": ""
+        },
+        {
+            "sqlType": "TIMESTAMP",
+            "javaType": "LocalDateTime",
+            "javaPackage": "java.time.LocalDateTime"
+        },
+        {
+            "sqlType": "BOOL",
+            "javaType": "Boolean",
+            "javaPackage": ""
+        },
+        {
+            "sqlType": "TEXT",
+            "javaType": "String",
+            "javaPackage": ""
+        },
+        {
+            "sqlType": "JSON",
+            "javaType": "Map<String, Object>",
+            "javaPackage": "java.util.Map"
+        },
+        {
+            "sqlType": "BIT",
+            "javaType": "Boolean",
+            "javaPackage": ""
+        },
+        {
+            "sqlType": "BOOLEAN",
+            "javaType": "Boolean",
+            "javaPackage": ""
+        },
+        {
+            "sqlType": "BINARY",
+            "javaType": "UUID",
+            "javaPackage": "java.util.UUID"
+        }
+    ],
+    "annotations": [
+        {
+            "sql": "PRIMARY KEY",
+            "annotation": {
+                "name": "@Id",
+                "values": [],
+                "package": "jakarta.persistence.Id"
+            }
+        },
+        {
+            "sql": "AUTO_INCREMENT",
+            "annotation": {
+                "name": "@GeneratedValue",
+                "values": ["strategy = GenerationType.IDENTITY"],
+                "package": "jakarta.persistence.GeneratedValue"
+            }
+        },
+        {
+            "sql": "NOT NULL",
+            "annotation": {
+                "name": "@Column",
+                "values": ["nullable = false"],
+                "package": "jakarta.persistence.Column"
+            }
+        },
+        {
+            "sql": "UNIQUE",
+            "annotation": {
+                "name": "@Column",
+                "values": ["unique = true"],
+                "package": "jakarta.persistence.Column"
+            }
+        }
+    ]
+}

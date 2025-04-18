@@ -1,15 +1,14 @@
-package cmd
+package java
 
 import (
 	"encoding/json"
 	"fmt"
-	"os"
-
 	pkgJava "github.com/meteormin/godev-utils/pkg/java"
 	"github.com/spf13/cobra"
+	"os"
 )
 
-var sqlToEntityCmd = &cobra.Command{
+var SqlToEntityCmd = &cobra.Command{
 	Use:   "sqlToEntityForJava",
 	Short: "Generate entity classes from SQL DDL",
 	Long: `Generate entity classes from SQL DDL. For example:
@@ -27,10 +26,9 @@ var (
 )
 
 func init() {
-	rootCmd.AddCommand(sqlToEntityCmd)
-	sqlToEntityCmd.Flags().StringVarP(&packageName, "package", "p", "com.example.entity", "package name for generated entity classes")
-	sqlToEntityCmd.Flags().StringVarP(&outputDir, "out", "o", "./", "output directory for generated entity classes")
-	sqlToEntityCmd.Flags().StringVarP(&typeMap, "typeMap", "t", "./typeMap.json", "type map for converting SQL types to Java types")
+	SqlToEntityCmd.Flags().StringVarP(&packageName, "package", "p", "com.example.entity", "package name for generated entity classes")
+	SqlToEntityCmd.Flags().StringVarP(&outputDir, "out", "o", "./", "output directory for generated entity classes")
+	SqlToEntityCmd.Flags().StringVarP(&typeMap, "typeMap", "t", "./typeMap.json", "type map for converting SQL types to Java types")
 }
 
 func validFlags() error {
@@ -107,7 +105,7 @@ func runSqlToEntity(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	var typeMap map[string]pkgJava.TypeMap
+	var typeMap []pkgJava.TypeMap
 	err = json.Unmarshal(typeMapFile, &typeMap)
 	if err != nil {
 		return err
